@@ -18,54 +18,41 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.wicket.markup.html.basic.Label;
 
-import es.salesianos.edu.models.Team;
-import es.salesianos.edu.repository.Repository;
-import es.salesianos.edu.service.ServiceTeam;
+import es.salesianos.edu.models.Book;
+import es.salesianos.edu.repository.RepositoryBooks;
+import es.salesianos.edu.service.ServiceBook;
 
-public class ListTeamPage extends WebPage{
-	
+public class ListBookPage extends WebPage{
 	private static final long serialVersionUID = -1935854748907274886L;
-	
+
 	@SpringBean
-	ServiceTeam service;
+	ServiceBook service;
 	
 	@Autowired
-	Repository repository;
-
-	private List<Team> listTeams = Collections.emptyList();
+	RepositoryBooks repository;
 	
-
-	public ListTeamPage() {
+	private List<Book> listBooks=Collections.emptyList();
+	
+	public ListBookPage(){
 		initC();
 	}
 	
-	/*public void addFormList() {
-		Form form = new Form("formListTeam", new CompoundPropertyModel(new Team())) {
-			
-		};
-		add(form);
-	}*/
-	
 	public void initC(){
-		//addFormList();
 		addViewListForm();
 	}
 	
-	
-	
-	
-	
-	public void addViewListForm() {
-		Team team = new Team();
-		listTeams = service.addListTeam();
-		ListView<Team> teams = new ListView<Team>("team-group", listTeams) {
+	public void addViewListForm(){
+		Book book = new Book();
+		listBooks=service.addListBook();
+		ListView<Book> books = new ListView<Book>("team-group",listBooks){
 			@Override
-			protected void populateItem(ListItem item) {
-				Team team = (Team) item.getModelObject();
-				item.add(new Label("teamName", team.getNameTeam()));
-				item.add(new Label("teamDivision", team.getNameTeam()));
+			protected void populateItem(ListItem item){
+				Book book = (Book) item.getModelObject();
+				item.add(new Label("bookName",book.getTitle()));
+				item.add(new Label("bookAuthor",book.getAuthor()));
 			}
+
 		};
-		add(teams);
+		add(books);
 	}
 }

@@ -6,11 +6,11 @@ import java.util.List;
 import org.apache.logging.log4j.Logger;
 
 import es.salesianos.edu.connection.DataBase;
-import es.salesianos.edu.models.Team;
+import es.salesianos.edu.models.Author;
 
 
 @org.springframework.stereotype.Repository
-public class Repository{
+public class RepositoryAuthor{
 
 	 private DataBase db = new DataBase();
 
@@ -22,14 +22,14 @@ public class Repository{
 		this.db = db;
 	}
 	
-	public boolean insertTeam (Team team) {
-		db.getTeams().add(team);
+	public boolean insertAuthor (Author author) {
+		db.getAuthor().add(author);
 		return true;
 	}
 	
-	public List<Team> listTeams() {
+	public List<Author> listAuthor() {
 		
-		return db.getTeams();
+		return db.getAuthor();
 	}
 
 	

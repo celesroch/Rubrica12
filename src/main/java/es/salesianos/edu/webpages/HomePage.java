@@ -7,18 +7,18 @@ public class HomePage extends WebPage{
 	
 	public HomePage() {
 		BookmarkablePageLink link1 = 
-			new BookmarkablePageLink("linkPlayerForm", 
-			PlayerPage.class);
+			new BookmarkablePageLink("linkBookrForm", 
+			BookPage.class);
 		BookmarkablePageLink link3 = 
-				new BookmarkablePageLink("linkPlayerList", 
-				PlayerPage.class);
+				new BookmarkablePageLink("linkBookrList", 
+						ListBookPage.class);
 		
 		BookmarkablePageLink link2 = 
 				new BookmarkablePageLink("linkTeamForm", 
-				TeamPage.class);
+				AuthorPage.class);
 		BookmarkablePageLink link4 = 
 				new BookmarkablePageLink("linkTeamList", 
-				ListTeamPage.class);
+				ListAuthorPage.class);
 		
 		add(link1);
 		add(link3);

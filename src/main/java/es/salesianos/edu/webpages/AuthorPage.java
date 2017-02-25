@@ -13,40 +13,40 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.apache.wicket.markup.html.basic.Label;
 
-import es.salesianos.edu.models.Team;
-import es.salesianos.edu.repository.Repository;
-import es.salesianos.edu.service.ServiceTeam;
+import es.salesianos.edu.models.Author;
+import es.salesianos.edu.repository.RepositoryAuthor;
+import es.salesianos.edu.service.ServiceAuthor;
 
-public class TeamPage extends WebPage{
+public class AuthorPage extends WebPage{
 	
 	private static final long serialVersionUID = -1935854748907274886L;
 	
 	@SpringBean 
-	ServiceTeam serviceTeam;
+	ServiceAuthor serviceTeam;
 	
 	@Autowired
-	Repository repository;
+	RepositoryAuthor repository;
 	
-	public TeamPage() {
+	public AuthorPage() {
 		
-		Form form = new Form("formInsertTeam", new CompoundPropertyModel(new Team())) {
+		Form form = new Form("formInsertAuthor", new CompoundPropertyModel(new Author())) {
 				
 			@Override
 			protected void onSubmit() {
 				super.onSubmit();
-				Team newTeam = new Team();
+				Author newAuthor = new Author();
 				//casteo para que sepa que es un team. con el getModelObject accedo al valor que haya en los inputs
-				newTeam.setNameTeam(((Team) getModelObject()).getNameTeam());
-				newTeam.setDivisionTeam(((Team)getModelObject()).getDivisionTeam());
-				serviceTeam.insert(newTeam);
+				newAuthor.setName(((Author) getModelObject()).getName());
+				newAuthor.setFechaNacimiento(((Author)getModelObject()).getFechaNacimiento());
+				serviceTeam.insert(newAuthor);
 				//addViewList();
 			}
 		};
 		
-		form.add(new Label("nameTeamLabel", getString("team.name")));
-		form.add(new Label("divisionTeamLabel", getString("team.division")));
-		form.add(new RequiredTextField("nameTeam"));
-		form.add(new RequiredTextField("divisionTeam"));
+		form.add(new Label("nameBookLabel", "Nombre del libro"));
+		form.add(new Label("fechaNacBookLabel","Fecha de nacimiento"));
+		form.add(new RequiredTextField("name"));
+		form.add(new RequiredTextField("fechaNacimiento"));
 		
 		add(form);
 		
